@@ -266,6 +266,7 @@ The following AI Models have been tested to support List, Map and Bean structure
 | xref:api/chat/mistralai-chat.adoc[Mistral AI] | link:https://github.com/spring-projects/spring-ai/blob/main/models/spring-ai-mistral-ai/src/test/java/org/springframework/ai/mistralai/MistralAiChatModelIT.java[MistralAiChatModelIT.java]
 | xref:api/chat/ollama-chat.adoc[Ollama] | link:https://github.com/spring-projects/spring-ai/blob/main/models/spring-ai-ollama/src/test/java/org/springframework/ai/ollama/OllamaChatModelIT.java[OllamaChatModelIT.java]
 | xref:api/chat/vertexai-gemini-chat.adoc[Vertex AI Gemini] | link:https://github.com/spring-projects/spring-ai/blob/main/models/spring-ai-vertex-ai-gemini/src/test/java/org/springframework/ai/vertexai/gemini/VertexAiGeminiChatModelIT.java[VertexAiGeminiChatModelIT.java]
+| xref:api/chat/google-genai-chat.adoc[Google GenAI] | link:https://github.com/spring-projects/spring-ai/blob/main/models/spring-ai-google-genai/src/test/java/org/springframework/ai/google/genai/GoogleGenAiChatModelIT.java[GoogleGenAiChatModelIT.java]
 |====
 
 == Built-in JSON mode

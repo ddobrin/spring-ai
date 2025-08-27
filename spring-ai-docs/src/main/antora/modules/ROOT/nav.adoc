@@ -20,6 +20,7 @@
 **** xref:api/chat/dmr-chat.adoc[Docker Model Runner]
 **** xref:api/chat/google-vertexai.adoc[Google VertexAI]
 ***** xref:api/chat/vertexai-gemini-chat.adoc[VertexAI Gemini]
+**** xref:api/chat/google-genai-chat.adoc[Google GenAI]
 **** xref:api/chat/groq-chat.adoc[Groq]
 **** xref:api/chat/huggingface.adoc[Hugging Face]
 **** xref:api/chat/mistralai-chat.adoc[Mistral AI]
