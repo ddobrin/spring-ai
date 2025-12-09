@@ -37,6 +37,16 @@ public enum GoogleGenAiTextEmbeddingModelName implements EmbeddingModelDescripti
 	TEXT_EMBEDDING_004("text-embedding-004", "004", 768, "English text model"),
 
 	/**
+	 * English model.
+	 */
+	TEXT_EMBEDDING_005("text-embedding-005", "005", 768, "English text model"),
+
+	/**
+	 * Supports text only at this time
+	 */
+	GEMINI_EMBEDDING_001("gemini-embedding-001", "001", 3072, "English text model"),
+
+	/**
 	 * Multilingual model. Expires on May 14, 2025.
 	 */
 	TEXT_MULTILINGUAL_EMBEDDING_002("text-multilingual-embedding-002", "002", 768, "Multilingual text model");

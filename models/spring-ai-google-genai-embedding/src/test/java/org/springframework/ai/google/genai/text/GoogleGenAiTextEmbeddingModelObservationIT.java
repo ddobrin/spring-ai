@@ -63,7 +63,7 @@ public class GoogleGenAiTextEmbeddingModelObservationIT {
 	void observationForEmbeddingOperation() {
 
 		var options = GoogleGenAiTextEmbeddingOptions.builder()
-			.model(GoogleGenAiTextEmbeddingModelName.TEXT_EMBEDDING_004.getName())
+			.model(GoogleGenAiTextEmbeddingModelName.GEMINI_EMBEDDING_001.getName())
 			.dimensions(768)
 			.build();
 
@@ -79,12 +79,12 @@ public class GoogleGenAiTextEmbeddingModelObservationIT {
 			.doesNotHaveAnyRemainingCurrentObservation()
 			.hasObservationWithNameEqualTo(DefaultEmbeddingModelObservationConvention.DEFAULT_NAME)
 			.that()
-			.hasContextualNameEqualTo("embedding " + GoogleGenAiTextEmbeddingModelName.TEXT_EMBEDDING_004.getName())
+			.hasContextualNameEqualTo("embedding " + GoogleGenAiTextEmbeddingModelName.GEMINI_EMBEDDING_001.getName())
 			.hasLowCardinalityKeyValue(LowCardinalityKeyNames.AI_OPERATION_TYPE.asString(),
 					AiOperationType.EMBEDDING.value())
 			.hasLowCardinalityKeyValue(LowCardinalityKeyNames.AI_PROVIDER.asString(), AiProvider.VERTEX_AI.value())
 			.hasLowCardinalityKeyValue(LowCardinalityKeyNames.REQUEST_MODEL.asString(),
-					GoogleGenAiTextEmbeddingModelName.TEXT_EMBEDDING_004.getName())
+					GoogleGenAiTextEmbeddingModelName.GEMINI_EMBEDDING_001.getName())
 			.hasLowCardinalityKeyValue(LowCardinalityKeyNames.RESPONSE_MODEL.asString(), responseMetadata.getModel())
 			.hasHighCardinalityKeyValue(HighCardinalityKeyNames.REQUEST_EMBEDDING_DIMENSIONS.asString(), "768")
 			.hasHighCardinalityKeyValue(HighCardinalityKeyNames.USAGE_INPUT_TOKENS.asString(),

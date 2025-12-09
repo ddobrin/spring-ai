@@ -10,6 +10,8 @@ The benefit of using dense vector embeddings in generative AI is that instead of
 [NOTE]
 ====
 Currently, the Google GenAI SDK supports text embeddings only. Multimodal embeddings support is pending and will be added when available in the SDK.
+
+`text-embedding-004` model to be removed Jan 14, 2026, with `gemini-enmbedding-001` as the recommended model
 ====
 
 This implementation provides two authentication modes:
@@ -118,7 +120,7 @@ The prefix `spring.ai.google.genai.embedding.text` is the property prefix that l
 | Property | Description | Default
 
 | spring.ai.model.embedding.text | Enable Google GenAI Embedding API model. | google-genai
-| spring.ai.google.genai.embedding.text.options.model | The https://ai.google.dev/gemini-api/docs/models/gemini#text-embedding[Google GenAI Text Embedding model] to use. Supported models include `text-embedding-004` and `text-multilingual-embedding-002` | text-embedding-004
+| spring.ai.google.genai.embedding.text.options.model | The https://ai.google.dev/gemini-api/docs/models/gemini#text-embedding[Google GenAI Text Embedding model] to use. Supported models include `text-embedding-005` and `text-multilingual-embedding-002` | gemini-embedding-001
 | spring.ai.google.genai.embedding.text.options.task-type | The intended downstream application to help the model produce better quality embeddings. Available link:https://ai.google.dev/api/embeddings#tasktype[task-types]: `RETRIEVAL_QUERY`, `RETRIEVAL_DOCUMENT`, `SEMANTIC_SIMILARITY`, `CLASSIFICATION`, `CLUSTERING`, `QUESTION_ANSWERING`, `FACT_VERIFICATION`  | `RETRIEVAL_DOCUMENT`
 | spring.ai.google.genai.embedding.text.options.title | Optional title, only valid with task_type=RETRIEVAL_DOCUMENT.  | -
 | spring.ai.google.genai.embedding.text.options.dimensions | The number of dimensions the resulting output embeddings should have. Supported for model version 004 and later. You can use this parameter to reduce the embedding size, for example, for storage optimization.  | -
@@ -136,7 +138,7 @@ Add a `application.properties` file, under the `src/main/resources` directory, t
 [source,application.properties]
 ----
 spring.ai.google.genai.embedding.api-key=YOUR_API_KEY
-spring.ai.google.genai.embedding.text.options.model=text-embedding-004
+spring.ai.google.genai.embedding.text.options.model=gemini-embedding-001
 ----
 
 === Using Vertex AI
@@ -145,7 +147,7 @@ spring.ai.google.genai.embedding.text.options.model=text-embedding-004
 ----
 spring.ai.google.genai.embedding.project-id=YOUR_PROJECT_ID
 spring.ai.google.genai.embedding.location=YOUR_PROJECT_LOCATION
-spring.ai.google.genai.embedding.text.options.model=text-embedding-004
+spring.ai.google.genai.embedding.text.options.model=gemini-embedding-001
 ----
 
 
@@ -258,14 +260,14 @@ Example of using different task types:
 ----
 // For indexing documents
 GoogleGenAiTextEmbeddingOptions docOptions = GoogleGenAiTextEmbeddingOptions.builder()
-    .model("text-embedding-004")
+    .model("gemini-embedding-001")
     .taskType(TaskType.RETRIEVAL_DOCUMENT)
     .title("Product Documentation")  // Optional title for documents
     .build();
 
 // For search queries
 GoogleGenAiTextEmbeddingOptions queryOptions = GoogleGenAiTextEmbeddingOptions.builder()
-    .model("text-embedding-004")
+    .model("gemini-embedding-001")
     .taskType(TaskType.RETRIEVAL_QUERY)
     .build();
 ----
@@ -277,7 +279,7 @@ For model version 004 and later, you can reduce the embedding dimensions for sto
 [source,java]
 ----
 GoogleGenAiTextEmbeddingOptions options = GoogleGenAiTextEmbeddingOptions.builder()
-    .model("text-embedding-004")
+    .model("gemini-embedding-001")
     .dimensions(256)  // Reduce from default 768 to 256 dimensions
     .build();
 ----

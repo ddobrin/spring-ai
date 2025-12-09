@@ -57,13 +57,23 @@ class GoogleGenAiTextEmbeddingModelIT {
 	private Client genAiClient;
 
 	@ParameterizedTest(name = "{0} : {displayName} ")
-	@ValueSource(strings = { "text-embedding-005", "text-embedding-005", "text-multilingual-embedding-002" })
+	@ValueSource(strings = { "text-embedding-005", "text-multilingual-embedding-002" })
 	void defaultEmbedding(String modelName) {
 		assertThat(this.embeddingModel).isNotNull();
 
-		var options = GoogleGenAiTextEmbeddingOptions.builder().model(modelName).build();
+		// var options =
+		// GoogleGenAiTextEmbeddingOptions.builder().model(modelName).build();
 
-		EmbeddingResponse embeddingResponse = this.embeddingModel
+		GoogleGenAiEmbeddingConnectionDetails connectionDetails = GoogleGenAiEmbeddingConnectionDetails.builder()
+			.projectId(System.getenv("GOOGLE_CLOUD_PROJECT"))
+			.location(System.getenv("GOOGLE_CLOUD_LOCATION"))
+			.build();
+
+		GoogleGenAiTextEmbeddingOptions options = GoogleGenAiTextEmbeddingOptions.builder().model(modelName).build();
+
+		var embeddingModel = new GoogleGenAiTextEmbeddingModel(connectionDetails, options);
+
+		EmbeddingResponse embeddingResponse = embeddingModel
 			.call(new EmbeddingRequest(List.of("Hello World", "World is Big"), options));
 
 		assertThat(embeddingResponse.getResults()).hasSize(2);
@@ -76,7 +86,7 @@ class GoogleGenAiTextEmbeddingModelIT {
 			.as("Total tokens in metadata should be 5")
 			.isEqualTo(5L);
 
-		assertThat(this.embeddingModel.dimensions()).isEqualTo(768);
+		assertThat(embeddingModel.dimensions()).isEqualTo(768);
 	}
 
 	// At this time, the new gemini-embedding-001 model supports only a batch size of 1
@@ -101,7 +111,7 @@ class GoogleGenAiTextEmbeddingModelIT {
 			.as("Total tokens in metadata should be 5")
 			.isEqualTo(2L);
 
-		assertThat(this.embeddingModel.dimensions()).isEqualTo(768);
+		assertThat(this.embeddingModel.dimensions()).isEqualTo(3072);
 	}
 
 	// Fixing https://github.com/spring-projects/spring-ai/issues/2168
@@ -216,7 +226,7 @@ class GoogleGenAiTextEmbeddingModelIT {
 				GoogleGenAiEmbeddingConnectionDetails connectionDetails) {
 
 			GoogleGenAiTextEmbeddingOptions options = GoogleGenAiTextEmbeddingOptions.builder()
-				.model(GoogleGenAiTextEmbeddingModelName.TEXT_EMBEDDING_004.getName())
+				.model(GoogleGenAiTextEmbeddingModelName.GEMINI_EMBEDDING_001.getName())
 				.taskType(GoogleGenAiTextEmbeddingOptions.TaskType.RETRIEVAL_DOCUMENT)
 				.build();
 
